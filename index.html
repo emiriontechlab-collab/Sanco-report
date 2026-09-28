@@ -1,8 +1,10 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sanco Ranking Results</title>
+<meta name="description" content="Search ranking performance across 17 tracked keywords for Sanco Building Materials.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -22,14 +24,53 @@
     --gold-soft: #F1E4C8;
     --good: #2F6B4F;
     --good-soft: #DEEAE1;
+    color-scheme: light;
   }
 
-  *{box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
-  html,body{margin:0; padding:0;}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: #17130F;
+      --surface: #211C16;
+      --surface-2: #2A241C;
+      --ink: #F2EBDD;
+      --muted: #A79A87;
+      --line: #3A3226;
+      --accent: #E2545F;
+      --accent-ink: #F3A3A9;
+      --accent-soft: #3B2224;
+      --gold: #E6B75B;
+      --gold-soft: #3A2E17;
+      --good: #6FBE95;
+      --good-soft: #1F3227;
+      color-scheme: dark;
+    }
+  }
+
+  :root[data-theme="dark"]{
+    --bg: #17130F;
+    --surface: #211C16;
+    --surface-2: #2A241C;
+    --ink: #F2EBDD;
+    --muted: #A79A87;
+    --line: #3A3226;
+    --accent: #E2545F;
+    --accent-ink: #F3A3A9;
+    --accent-soft: #3B2224;
+    --gold: #E6B75B;
+    --gold-soft: #3A2E17;
+    --good: #6FBE95;
+    --good-soft: #1F3227;
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{ margin:0; padding:0; }
   body{
     background:var(--bg);
     color:var(--ink);
     font-family:'Inter',system-ui,sans-serif;
+    padding-inline:20px;
+    padding-block:48px 64px;
   }
 
   .page{
@@ -37,16 +78,15 @@
     margin:0 auto;
     display:flex;
     flex-direction:column;
-    gap:36px;
-    padding:40px 44px 50px;
+    gap:44px;
   }
 
   /* ---------- Header ---------- */
   .masthead{
     display:flex;
     flex-direction:column;
-    gap:16px;
-    padding-bottom:26px;
+    gap:18px;
+    padding-bottom:32px;
     border-bottom:1.5px solid var(--line);
   }
   .brandrow{
@@ -93,13 +133,14 @@
   h1{
     font-family:'Fraunces',serif;
     font-weight:600;
-    font-size:38px;
+    font-size:clamp(28px,7vw,44px);
     line-height:1.08;
     margin:0;
+    text-wrap:balance;
     letter-spacing:-0.01em;
   }
   .dek{
-    font-size:15.5px;
+    font-size:16px;
     line-height:1.55;
     color:var(--muted);
     max-width:62ch;
@@ -119,7 +160,7 @@
   }
   .stat{
     background:var(--surface);
-    padding:20px 16px;
+    padding:22px 18px;
     display:flex;
     flex-direction:column;
     gap:6px;
@@ -127,32 +168,43 @@
   .stat .n{
     font-family:'Fraunces',serif;
     font-weight:600;
-    font-size:32px;
+    font-size:34px;
     line-height:1;
     font-variant-numeric:tabular-nums;
   }
   .stat .n.accent{ color:var(--accent); }
   .stat .n.gold{ color:var(--gold); }
   .stat .n.good{ color:var(--good); }
-  .stat .l{ font-size:12px; color:var(--muted); line-height:1.35; }
+  .stat .l{
+    font-size:12.5px;
+    color:var(--muted);
+    line-height:1.35;
+  }
+  @media (max-width:620px){
+    .stats{ grid-template-columns:repeat(2,1fr); }
+    .stat .n{ font-size:28px; }
+    body{ padding-block:32px 48px; }
+    .page{ gap:32px; }
+  }
 
   /* ---------- Section heads ---------- */
-  .section{ display:flex; flex-direction:column; gap:14px; }
+  .section{ display:flex; flex-direction:column; gap:16px; }
   .section-head{
     display:flex;
     align-items:baseline;
     justify-content:space-between;
     gap:12px;
+    flex-wrap:wrap;
   }
   h2{
     font-family:'Fraunces',serif;
     font-weight:600;
-    font-size:20px;
+    font-size:21px;
     margin:0;
     letter-spacing:-.005em;
   }
   .section-note{
-    font-size:12px;
+    font-size:12.5px;
     color:var(--muted);
     font-family:'IBM Plex Mono',monospace;
   }
@@ -161,11 +213,11 @@
   .catbars{
     display:flex;
     flex-direction:column;
-    gap:12px;
+    gap:14px;
     background:var(--surface);
     border:1px solid var(--line);
     border-radius:14px;
-    padding:20px 20px 18px;
+    padding:22px 22px 20px;
   }
   .catrow{
     display:grid;
@@ -173,7 +225,10 @@
     align-items:center;
     gap:14px;
   }
-  .catname{ font-size:13px; font-weight:600; }
+  .catname{
+    font-size:13.5px;
+    font-weight:600;
+  }
   .barwrap{
     position:relative;
     height:10px;
@@ -195,8 +250,9 @@
     display:flex;
     gap:18px;
     padding-top:10px;
-    margin-top:2px;
+    margin-top:4px;
     border-top:1px solid var(--line);
+    flex-wrap:wrap;
   }
   .legend-item{
     display:flex;
@@ -211,14 +267,14 @@
   .dot.p2{ background:var(--gold); opacity:.55; }
 
   /* ---------- Keyword table ---------- */
-  .groups{ display:flex; flex-direction:column; gap:20px; }
-  .group{ display:flex; flex-direction:column; gap:9px; break-inside:avoid; }
+  .groups{ display:flex; flex-direction:column; gap:26px; }
+  .group{ display:flex; flex-direction:column; gap:10px; }
   .group-title{
     display:flex;
     align-items:center;
     gap:10px;
     font-family:'IBM Plex Mono',monospace;
-    font-size:11.5px;
+    font-size:12px;
     font-weight:600;
     letter-spacing:.08em;
     text-transform:uppercase;
@@ -244,21 +300,22 @@
     align-items:center;
     justify-content:space-between;
     gap:12px;
-    padding:11px 18px;
+    padding:13px 18px;
     border-top:1px solid var(--line);
   }
   .kwrow:first-child{ border-top:none; }
   .kwterm{
-    font-size:14px;
+    font-size:14.5px;
     font-weight:500;
     display:flex;
     align-items:center;
     gap:9px;
+    flex-wrap:wrap;
   }
   .badges{ display:flex; align-items:center; gap:7px; flex:none; }
   .badge{
     font-family:'IBM Plex Mono',monospace;
-    font-size:10.5px;
+    font-size:11px;
     font-weight:600;
     letter-spacing:.03em;
     padding:4px 10px;
@@ -274,15 +331,23 @@
     display:flex;
     flex-direction:column;
     gap:6px;
-    padding-top:20px;
+    padding-top:24px;
     border-top:1.5px solid var(--line);
-    font-size:12px;
+    font-size:12.5px;
     color:var(--muted);
     line-height:1.6;
   }
   .foot b{ color:var(--ink); }
 
-  @page{ margin:0; }
+  /* ---------- Mobile breakpoint ---------- */
+  @media (max-width:560px){
+    body{ padding-inline:16px; }
+    .catrow{ grid-template-columns:96px 1fr 46px; gap:8px; }
+    .catname{ font-size:12.5px; }
+    .kwrow{ flex-direction:column; align-items:flex-start; gap:8px; }
+    .section-head{ flex-direction:column; align-items:flex-start; gap:4px; }
+    .brandrow{ flex-direction:column; align-items:flex-start; gap:8px; }
+  }
 </style>
 </head>
 <body>
@@ -293,7 +358,7 @@
     <div class="brandrow">
       <div class="logo">
         <svg class="mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 8 L18 8 L8 16 L22 16 L12 24 L28 24" stroke="#A81F2C" stroke-width="4.5" stroke-linecap="square" fill="none"/>
+          <path d="M4 8 L18 8 L8 16 L22 16 L12 24 L28 24" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square" fill="none"/>
         </svg>
         <strong>Sanco Building Materials</strong>
       </div>
